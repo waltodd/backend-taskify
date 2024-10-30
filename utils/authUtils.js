@@ -5,7 +5,7 @@ export const verifyToken = (req, res, next) => {
 
   if (!token) {
     return res.status(403).json({
-      message: "A token is required for authentication",
+      message: "Um token é necessário para a autenticação",
     });
   }
 
@@ -13,14 +13,12 @@ export const verifyToken = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         return res.status(401).send({
-          message: "Unauthorized!",
+          message: "Não autorizado!",
         });
       }
 
       req.userId = decoded.userId;
 
-      console.log("Decoded token:", decoded); // Adicione esta linha para verificar o que está no token
-      console.log(req.userId)
       next();
     });
   } catch (err) {

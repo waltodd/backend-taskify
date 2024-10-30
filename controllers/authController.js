@@ -70,7 +70,7 @@ export const signUp = async (req, res) => {
 export const getCurrentUser = async (req, res) => {
   try {
     const userId = req.userId; // Obtém o ID do usuário a partir da requisição (configurado durante a autenticação)
-console.log(userId)
+
     // Busca o usuário pelo ID e exclui o campo de senha
     const user = await User.findById(userId).select('-password');
     
