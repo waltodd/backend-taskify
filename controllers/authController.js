@@ -1,6 +1,6 @@
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
-import { User } from '../models/User'; // Modelo do usuário (Mongoose)
+import  User  from '../models/User.js'; // Modelo do usuário (Mongoose)
 
 // Função de Login (signIn): Autentica o usuário e retorna um token JWT
 export const signIn = async (req, res) => {
