@@ -15,7 +15,11 @@ const app = express();
 // Middleware to parse JSON requests
 app.use(express.json());
 
-
+const corsOptions = {
+  origin: 'http://localhost:3000', // Replace with your frontend's actual URL
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 // Call the function to connect to the database
 connectDB();
