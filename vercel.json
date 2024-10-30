@@ -13,7 +13,7 @@
     }
   ],
   "env": {
-    "MONGODB_URI": "@mongodb_uri", 
-    "JWT_SECRET": "@jwt_secret" 
+    "MONGODB_URI": "mongodb+srv://valtermiguelwork:RgNeoxpDoR0AY2Cs@cluster0.mdznc.mongodb.net/taskifyDB?retryWrites=true&w=majority&appName=Cluster0", 
+    "JWT_SECRET": "your_secret_key" 
   }
 }

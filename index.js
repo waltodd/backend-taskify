@@ -16,9 +16,16 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with your frontend's actual URL
-  optionsSuccessStatus: 200,
+  origin: ["http://localhost:5173", "http://localhost:3000"], // Adicione todos os domínios permitidos aqui
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "x-access-token ",
+    "x-uploadthing-version",
+  ],
 };
+
 app.use(cors(corsOptions));
 
 // Call the function to connect to the database
