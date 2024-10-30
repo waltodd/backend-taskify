@@ -5,7 +5,7 @@ import authRoutes from './routes/authRoutes.js'; // Import user routes
 import taskRoutes from './routes/taskRoutes.js'; // Import task routes
 import protectedRoutes from './routes/protectedRoutes.js'; // Import protected routes
 import { connectDB } from './database/db.js'; // Import database connection function
-
+import bodyParser from 'body-parser';
 // Load environment variables from .env file
 dotenv.config();
 
@@ -14,7 +14,7 @@ const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
-
+app.use(bodyParser.json());
 // CORS configuration
 const corsOptions = {
   origin: ["http://localhost:5173", "http://localhost:3000"], // Allowed domains
