@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 
 export const verifyToken = (req, res, next) => {
   const token = req.headers["x-access-token"];
@@ -11,17 +10,19 @@ export const verifyToken = (req, res, next) => {
   }
 
   try {
-    
-    jwt.verify(token, JWT_SECRET, (err, decoded) => {
-      if(err){
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
         return res.status(401).send({
-          message:"Unauthorized!"
-        })
+          message: "Unauthorized!",
+        });
       }
 
-      req.userId = decoded.id
-      next()
-    })
+      req.userId = decoded.userId;
+
+      console.log("Decoded token:", decoded); // Adicione esta linha para verificar o que está no token
+      console.log(req.userId)
+      next();
+    });
   } catch (err) {
     return res.status(401).json({ message: "Invalid Token" });
   }

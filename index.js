@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js'; // Import user routes
 import taskRoutes from './routes/taskRoutes.js'; // Import task routes
-
+import protectedRoutes from "./routes/protectedRoutes.js";
 import {connectDB} from './database/db.js'
 // Load environment variables from .env file
 dotenv.config();
@@ -15,17 +15,24 @@ const app = express();
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Middleware to handle CORS
-app.use(cors());
-
 
 
 // Call the function to connect to the database
 connectDB();
 
 // Define routes
-app.use('/api/users', authRoutes); // User-related routes
-app.use('/api/tasks', taskRoutes); // Task-related routes
+app.use('/api/v1/users', authRoutes); // User-related routes
+app.use('/api/v1/tasks', taskRoutes); // Task-related routes
+
+
+// Protected routes
+app.use("/api", protectedRoutes);
+
+// Middleware to handle CORS
+app.use(cors());
+app.get('/', (req, res) => {
+    res.send('Hello, World!');
+  });
 
 // Set the server to listen on a specified port
 const PORT = process.env.PORT || 5000;
