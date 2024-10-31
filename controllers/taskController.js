@@ -3,9 +3,9 @@ import Task from"../models/Task.js";
 // Função para criar uma nova tarefa
 export const createTask = async (req, res) => {
   
-  const { title, priority } = req.body;
+  const { title, priority , description} = req.body;
   try {
-    const task = new Task({ title, priority, userId: req.userId }); // Atribui o ID do usuário à tarefa
+    const task = new Task({ title, priority,description, userId: req.userId }); // Atribui o ID do usuário à tarefa
     await task.save();
     res.status(201).json(task); // Retorna a tarefa criada
   } catch (err) {
@@ -38,11 +38,11 @@ export const getTaskById = async (req, res) => {
 // Função para atualizar uma tarefa existente
 export const updateTask = async (req, res) => {
   const { id } = req.params;
-  const { title, priority } = req.body;
+  const { title, priority,description } = req.body;
   try {
     const task = await Task.findOneAndUpdate(
       { _id: id, userId: req.userId },
-      { title, priority },
+      { title, priority,description },
       { new: true } // Retorna a tarefa atualizada
     );
     if (!task) return res.status(404).json({ message: "Tarefa não encontrada" }); // Retorna 404 se não encontrar

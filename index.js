@@ -17,20 +17,20 @@ app.use(express.json());
 app.use(bodyParser.json());
 // CORS configuration
 const corsOptions = {
-  origin: ["http://localhost:5173", "http://localhost:3000"], // Allowed domains
+  origin: "*",
+  
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: [
     "Content-Type",
     "Authorization",
     "x-access-token",
-    "x-uploadthing-version", // Removed trailing space
+    "x-uploadthing-version",
   ],
-  credentials: true, // If you need to include credentials (like cookies)
+  credentials: true,
 };
 
-// Use CORS middleware before defining routes
 app.use(cors(corsOptions));
-
+app.options("*", cors(corsOptions)); 
 // Call the function to connect to the database
 connectDB();
 
