@@ -6,8 +6,6 @@ import {
     updateTask,
     deleteTask,
     completeTask,
-    filterTasksByPriority,
-    filterTasksByStatus
 } from '../controllers/taskController.js';
 import { verifyToken } from '../utils/authUtils.js';
 
@@ -39,13 +37,6 @@ router.delete('/:id', verifyToken, deleteTask);
 
 // Rota para marcar uma tarefa como concluída
 router.patch('/:id/complete', verifyToken, completeTask);
-
-// Rota para filtrar tarefas por prioridade
-router.get('/filter/priority', verifyToken, filterTasksByPriority);
-
-// Rota para filtrar tarefas por status
-router.get('/filter/status', verifyToken, filterTasksByStatus);
-
 
 
 export default router;

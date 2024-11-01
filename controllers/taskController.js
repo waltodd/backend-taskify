@@ -80,24 +80,3 @@ export const completeTask = async (req, res) => {
   }
 };
 
-// Função para filtrar tarefas por prioridade
-export const filterTasksByPriority = async (req, res) => {
-  const { priority } = req.query; // Obtém a prioridade a partir dos parâmetros da query
-  try {
-    const tasks = await Task.find({ userId: req.userId, priority }); // Filtra tarefas pela prioridade e ID do usuário
-    res.status(200).json(tasks); // Retorna as tarefas filtradas
-  } catch (err) {
-    res.status(500).json({ error: err.message }); // Lida com erros
-  }
-};
-
-// Função para filtrar tarefas por status (concluídas ou pendentes)
-export const filterTasksByStatus = async (req, res) => {
-  const { completed } = req.query; // Obtém o status a partir dos parâmetros da query
-  try {
-    const tasks = await Task.find({ userId: req.userId, completed }); // Filtra tarefas pelo status e ID do usuário
-    res.status(200).json(tasks); // Retorna as tarefas filtradas
-  } catch (err) {
-    res.status(500).json({ error: err.message }); // Lida com erros
-  }
-};
