@@ -58,7 +58,7 @@ export const signUp = async (req, res) => {
     await user.save();
 
     // Retorna uma mensagem de sucesso
-    res.status(201).json({ message: "Utilizador registado com sucesso" });
+    res.status(201).json({ message: "Utilizador registado com sucesso", user });
   } catch (err) {
     // Lida com erros do servidor e duplicidade de email
     res.status(500).json({ error: err.message });
