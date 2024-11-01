@@ -24,7 +24,7 @@ export const signIn = async (req, res) => {
     // Gera um token JWT para o usuário autenticado
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
     
-    res.json({ 
+    res.status(201).json({ 
       token, 
       user: { 
         id: user._id, 
@@ -81,7 +81,7 @@ export const getCurrentUser = async (req, res) => {
     const tasks = await Task.find({ userId }); // Encontre todas as tarefas com o userId correspondente
 
     // Envia os dados do usuário e suas tarefas como resposta
-    res.status(200).json({ user, tasks });
+    res.status(201).json({ user, tasks });
   } catch (err) {
     // Lida com qualquer erro inesperado do servidor
     res.status(500).json({ error: err.message });
